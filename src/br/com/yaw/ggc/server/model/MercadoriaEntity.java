@@ -1,0 +1,101 @@
+package br.com.yaw.ggc.server.model;
+
+import java.util.List;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import br.com.yaw.ggc.client.model.Mercadoria;
+
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class MercadoriaEntity {
+
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Long id;
+	
+	@Persistent
+	private String nome;
+	
+	@Persistent
+	private String descricao;
+	
+	@Persistent
+	private Integer quantidade;
+	
+	@Persistent
+	private Double preco;
+	
+	public MercadoriaEntity() {}
+	
+	public MercadoriaEntity(Mercadoria m) {
+		if (m != null) {
+			this.id = m.getId();
+			this.nome = m.getNome();
+			this.descricao = m.getDescricao();
+			this.quantidade = m.getQuantidade();
+			this.preco = m.getPreco();
+		}
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Long getId() {
+		return id;
+	}
+	
+	public Double getPreco() {
+		return preco;
+	}
+	
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+	
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+	
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+	public Mercadoria toMercadoria() {
+		Mercadoria m = new Mercadoria();
+		m.setId(this.id);
+		m.setNome(this.nome);
+		m.setDescricao(this.descricao);
+		m.setPreco(this.preco);
+		m.setQuantidade(this.quantidade);
+		return m;
+	}
+	
+	public static Mercadoria[] toMercadoriaArray(List<MercadoriaEntity> mercadorias) {
+		Mercadoria[] data = new Mercadoria[mercadorias.size()];
+		for (int i = 0; i < mercadorias.size(); i++) {
+			MercadoriaEntity m = mercadorias.get(i);
+			if (m != null) {
+				data[i] = m.toMercadoria();
+			}
+		}
+		
+		return data;
+	}
+}
