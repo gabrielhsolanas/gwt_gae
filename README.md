@@ -1,11 +1,11 @@
 gwt_gae
 ===============
 
-Aplicativo web, desenvolvido utilizando o framework Google Web Toolkit (GWT). O GWT vai além de um simples framework web, é uma tecnologia composta por um conjunto de ferramentas para desenvolvimento web.
-
-Esse projeto pode ser implantado no Google App Engine (GAE), a plataforma de Cloud Computing do Google.
+Aplicativo web, desenvolvido utilizando o framework Google Web Toolkit (GWT) para o front-end e serviço web. Esse projeto foi desenvolvido com suporte a plataforma cloud (nuvem) do Google, o App Engine. A camada de persistência é implementada utilizando o JDO (Java Data Objects) com datanucleus integrado ao App Engine.
 
 O objetivo dessa aplicação é servir como conteúdo no estudo de desenvolvimento de soluções ricas para web (RIA) para implantação na nuvem.
+
+O projeto foi implantado no Google App Engine (GAE), pode ser acessado pela url: http://yawdemo-ggc.appspot.com/
 
 Detalhes da implementação
 -------
@@ -18,6 +18,9 @@ Pré-requisitos
 * JDK - última versão do Kit de desenvolvimento Java;
 * Eclipse IDE - o projeto possui as configurações do Eclipse, por contar com mais opções na integração com ferramentas do Google;
 * Plugin do Google para Eclipse - plugin com suporte a implantação no GAE e para o desenvolvimento com GWT.
+* Versão do SDK GWT: 2.5.0.
+* Versão do SKD do App Engine: 1.7.3
+* Versão do Datanuleus JDO: v1
 
 Saiba mais
 -------
