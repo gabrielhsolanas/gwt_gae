@@ -4,6 +4,13 @@ import java.io.Serializable;
 
 import com.google.gwt.i18n.client.NumberFormat;
 
+/**
+ * Classe que representa uma mercadoria na camada cliente. Esse componente, assim como todos no pacote <code>client</code>, são <i>compilados</i> em <code>JavaScript</code>.
+ * 
+ * <p>O objeto mercadoria é trafegado entre as camadas <i>cliente</i> e <i>servidor</i>. Através do <code>RPC</code> do GWT o objeto <code>Java</code> é transformado em <code>JavaScript</code> e vice versa.</p>
+ * 
+ * @author YaW Tecnologia
+ */
 public class Mercadoria implements Serializable {
 
 	private Long id;

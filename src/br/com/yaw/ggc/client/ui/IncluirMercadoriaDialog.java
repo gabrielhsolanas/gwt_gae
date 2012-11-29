@@ -9,6 +9,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+/**
+ * Define um <code>dialog</code> para realizar a inclusão e alteração de <code>Mercadoria</code>.
+ * 
+ * @author YaW Tecnologia
+ */
 public class IncluirMercadoriaDialog extends DialogBox {
 
 	private TextBox tbNome;
@@ -31,6 +36,9 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		this.add(montaPanelEditarMercadoria());
 	}
 
+	/**
+	 * @return monta um <code>Panel</code> com as labels e inputs de preenchimento.
+	 */
 	private VerticalPanel montaPanelEditarMercadoria() {
 		VerticalPanel fPanel = new VerticalPanel();
 		fPanel.add(new Label("Nome:"));
@@ -52,6 +60,9 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		return fPanel;
 	}
 	
+	/**
+	 * @return monta <code>panel</code> com os botões.
+	 */
 	private HorizontalPanel montaPanelBotoesEditar() {
 		HorizontalPanel bPanel = new HorizontalPanel();
 		bSalvar = new Button("Salvar");
@@ -61,6 +72,9 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		return bPanel;
 	}
 	
+	/**
+	 * Limpa os componentes da tela.
+	 */
 	private void resetForm(){
 		tbId.setValue(null);
 		tbNome.setText("");
@@ -69,6 +83,10 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		tbQuantidade.setText(new Integer(1).toString());
 	}
 	
+	/**
+	 * Preenche os campos da tela com o objeto <code>Mercadoria</code>.
+	 * @param m
+	 */
 	private void populaTextFields(Mercadoria m){
 		tbId.setValue(m.getId().toString());
 		tbNome.setText(m.getNome());
@@ -77,6 +95,11 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		tbPreco.setText(Mercadoria.convertPrecoToString(m.getPreco()));
 	}
 	
+	/**
+	 * Valida o preenchimento dos campos, de acordo com os problemas encontrados um string é definida.
+	 * 
+	 * @return string com informações de validação.
+	 */
 	private String validador() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(tbNome.getText() == null || "".equals(tbNome.getText().trim()) ? "Nome, " : "");
@@ -89,6 +112,10 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		return sb.toString();
 	}
 	
+	/**
+	 * @return <code>Mercadoria</code> de acordo com o que foi preenchido na tela.
+	 *        Caso não passe pela validação devolve <code>null</code>.
+	 */
 	public Mercadoria getMercadoria() {
 		String msg = validador();
 		if (!msg.isEmpty()) {
@@ -130,6 +157,10 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		super.hide();
 	}
 	
+	/**
+	 * Carrega os componentes do dialog com as informações da <code>Mercadoria</code>.
+	 * @param m
+	 */
 	public void setMercadoria(Mercadoria m) {
 		if (m != null) {
 			populaTextFields(m);

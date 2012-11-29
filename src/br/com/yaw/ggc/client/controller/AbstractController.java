@@ -6,6 +6,13 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ * Classe abstrata que define o componente controlador default. O controlador como intermediador dos componentes GUI com a camada de serviço.
+ * 
+ * <p>O controlador também herda <code>ClickHandler</code> para centralizar as operações relacionadas a partir de ações dos usuários (<i>eventos</i>).</p>
+ * 
+ * @author YaW Tecnologia
+ */
 public abstract class AbstractController implements ClickHandler {
 
 	private HashMap<String, ClickHandler> handlers;
@@ -14,7 +21,9 @@ public abstract class AbstractController implements ClickHandler {
 		handlers = new HashMap<String, ClickHandler>();
 	}
 	
-	
+	/**
+	 * Método executado no clique do usuário.
+	 */
 	@Override
 	public void onClick(ClickEvent event) {
 		Widget w = (Widget) event.getSource();
@@ -28,7 +37,12 @@ public abstract class AbstractController implements ClickHandler {
 		}
 	}
 	
-	public void addHandler(Widget w, ClickHandler h) {
+	/**
+	 * Método utilizado para vincular uma ação (tratador de evento) clique com um <code>Widget</code>.
+	 * @param w componente que deve ser vinculado a ação.
+	 * @param h tratador da ação.
+	 */
+	public void registerHandler(Widget w, ClickHandler h) {
 		if (w == null || h == null) {
 			return;
 		}

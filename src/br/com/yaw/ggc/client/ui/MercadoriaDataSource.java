@@ -6,6 +6,11 @@ import java.util.List;
 
 import br.com.yaw.ggc.client.model.Mercadoria;
 
+/**
+ * Implementa um <code>datasource</code> para <code>Mercadoria</code>.
+ * 
+ * @author YaW Tecnologia
+ */
 public class MercadoriaDataSource implements DataSource<Mercadoria> {	
 	
     private List<Mercadoria> data = new ArrayList<Mercadoria>();

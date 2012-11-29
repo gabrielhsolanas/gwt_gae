@@ -8,7 +8,11 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.UmbrellaException;
 
 /**
- * Entry point classes define <code>onModuleLoad()</code>.
+ * Entry point da aplicação. O método <code>onModuleLoad()</code> é acionado para carregar os componentes do front-end.
+ * 
+ * Veja a configuração no <code>Gwt_gae.gwt.xml</code>.
+ * 
+ * @author YaW Tecnologia
  */
 public class GwtGaeJDO implements EntryPoint {
 
@@ -25,9 +29,15 @@ public class GwtGaeJDO implements EntryPoint {
 				msgDialog.show();
 			}
 		});
+		
 		new MercadoriaController(mercadoriaService);
 	}
 
+	/**
+	 * @param e Recebe uma exceção
+	 * @return Procura pela exceção original caso o GWT use um wrapper.
+	 * @see UmbrellaException
+	 */
 	private Throwable unwrap(Throwable e) {
 		if (e instanceof UmbrellaException) {
 			UmbrellaException ue = (UmbrellaException) e;

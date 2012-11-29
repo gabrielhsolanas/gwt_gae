@@ -13,7 +13,14 @@ import br.com.yaw.ggc.server.model.MercadoriaEntity;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-public class MercadoriaServiceImpl extends RemoteServiceServlet implements MercadoriaService{
+/**
+ * Classe que implementa as operações definidas pelo serviço web (<i>camada servidor</i>).
+ * 
+ * <p>Utiliza o mecanismo de persistência para realizar as operações de cadastro de mercadorias.</p>
+ * 
+ * @author YaW Tecnologia
+ */
+public class MercadoriaServiceImpl extends RemoteServiceServlet implements MercadoriaService {
 	
 	//TODO logger
 	
@@ -61,7 +68,10 @@ public class MercadoriaServiceImpl extends RemoteServiceServlet implements Merca
 	    	pm.close();
 	    }
 	}
-	
+
+	/**
+	 * @return <code>PersistenceManager</code> componente JDO responsável por executar as operações de persistência.
+	 */
 	private PersistenceManager getPersistenceManager() {
 	    return factory.getPersistenceManager();
 	}

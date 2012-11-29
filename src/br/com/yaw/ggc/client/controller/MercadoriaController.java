@@ -20,6 +20,15 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ * Define o controlador para operações com o cadastro <code>Mercadoria</code>.
+ * 
+ * <p>Esse componente é responsável por instanciar objetos GUI, além de vincular as operações com o serviço web.</code>
+ * 
+ * <p>As operações com a camada servidor são acessadas pela interface <code>MercadoriaServiceAsync</code>.</p>
+ * 
+ * @author YaW Tecnologia
+ */
 public class MercadoriaController extends AbstractController {
 
 	private MercadoriaServiceAsync service;
@@ -33,7 +42,7 @@ public class MercadoriaController extends AbstractController {
 		this.service = s;
 		
 		final IncluirMercadoriaDialog incluirDialog = new IncluirMercadoriaDialog();
-		addHandler(incluirDialog.getbSalvar(), new ClickHandler() {
+		registerHandler(incluirDialog.getbSalvar(), new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				final Mercadoria m = incluirDialog.getMercadoria();
@@ -51,7 +60,7 @@ public class MercadoriaController extends AbstractController {
 				});
 			}
 		});
-		addHandler(incluirDialog.getbCancelar(), new ClickHandler() {
+		registerHandler(incluirDialog.getbCancelar(), new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				incluirDialog.hide();
@@ -61,7 +70,7 @@ public class MercadoriaController extends AbstractController {
 		buttonPanel.addStyleName("buttonPanel");
 		
 		Button bNova = new Button("Nova");
-		addHandler(bNova, new ClickHandler() {
+		registerHandler(bNova, new ClickHandler() {
 			
 			@Override
 			public void onClick(ClickEvent event) {
@@ -72,7 +81,7 @@ public class MercadoriaController extends AbstractController {
 		buttonPanel.add(bNova);
 		
 		Button bEditar = new Button("Editar");
-		addHandler(bEditar, new ClickHandler() {
+		registerHandler(bEditar, new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				Mercadoria m = mercadoriasTable.getMercadoriaSelected();

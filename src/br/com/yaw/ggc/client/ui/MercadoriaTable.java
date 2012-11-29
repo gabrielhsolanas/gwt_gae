@@ -8,10 +8,30 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.FlexTable;
 
+/**
+ * Especialização de <code>FlexTable</code>, adaptado para representar uma lista de <code>Mercadoria</code>.
+ * 
+ * <p>As colunas:</p>
+ * <ul>
+ *   <li>ID;</li>
+ *   <li>Nome;</li>
+ *   <li>Descrição;</li>
+ *   <li>Quantidade;</li>
+ *   <li>Preço;</li>
+ * </ul>
+ * 
+ * @author YaW Tecnologia
+ */
 public class MercadoriaTable extends FlexTable {
 	
-    private MercadoriaDataSource source;
+	/**
+	 * <code>DataSource</code> para manter os dados da tabela.
+	 */
+    private DataSource<Mercadoria> source;
     
+    /**
+     * Indice da linha selecionada.
+     */
     private int selectedRow;
 
 	public MercadoriaTable() {
@@ -45,11 +65,18 @@ public class MercadoriaTable extends FlexTable {
 		});
 	}	
 	
+	/**
+	 * Preenche a tabela com as mercadorias informadas. Caso exista alguma linha na tabela, será removida.
+	 * @param mercadorias
+	 */
 	public void fillTable(Mercadoria[] mercadorias) {
 		source = new MercadoriaDataSource(mercadorias);
 		updateAll();
 	}
 	
+	/**
+	 * Recarrega todas as linhas na tabela.
+	 */
 	private void updateAll() {
 		for (int i = this.getRowCount()-1; i > 0; i--){
             this.removeRow(1);
@@ -63,6 +90,11 @@ public class MercadoriaTable extends FlexTable {
         this.selectedRow = 0;
 	}
 
+	/**
+	 * Insere celulas com as informações de uma <code>Mercadoria</code> na tabela.
+	 * @param row
+	 * @param m
+	 */
 	private void insertRow(final int row, Mercadoria m) {
 		setText(row, 0, m.getId().toString());
 		setText(row, 1, m.getNome());
@@ -74,6 +106,11 @@ public class MercadoriaTable extends FlexTable {
 		getCellFormatter().addStyleName(row, 4, "listNumericColumn");
 	}
 	
+	/**
+	 * Marca a seleção da linha na tabela.
+	 * @param row
+	 * @param selected
+	 */
 	private void changeRow(int row, boolean selected) {
 		if (row > 0) {
 			Element tr = getRowFormatter().getElement(row);
@@ -82,6 +119,9 @@ public class MercadoriaTable extends FlexTable {
 		}
 	}
 	
+	/**
+	 * @return <code>Mercadoria</code> selecionada pelo usuário na tabela.
+	 */
 	public Mercadoria getMercadoriaSelected() {
 		if (source == null || selectedRow == 0)
 			return null;
@@ -89,11 +129,19 @@ public class MercadoriaTable extends FlexTable {
 		return source.getRow(selectedRow-1);
 	}
 	
+	/**
+	 * Adiciona uma <code>Mercadoria</code> na tabela.
+	 * @param m
+	 */
 	public void add(Mercadoria m) {
 		source.add(m);
 		updateAll();
 	}
 	
+	/**
+	 * Remove um <code>Mercadoria</code> da tabela.
+	 * @param m
+	 */
 	public void remove(Mercadoria m) {
 		source.remove(m);
 		updateAll();
