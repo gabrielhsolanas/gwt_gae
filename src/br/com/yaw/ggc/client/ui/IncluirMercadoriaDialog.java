@@ -76,11 +76,11 @@ public class IncluirMercadoriaDialog extends DialogBox {
 	 * Limpa os componentes da tela.
 	 */
 	private void resetForm(){
-		tbId.setValue(null);
+		tbId.setText("");
 		tbNome.setText("");
 		tbDescricao.setText("");
 		tbPreco.setText("");
-		tbQuantidade.setText(new Integer(1).toString());
+		tbQuantidade.setText("1");
 	}
 	
 	/**
@@ -88,10 +88,10 @@ public class IncluirMercadoriaDialog extends DialogBox {
 	 * @param m
 	 */
 	private void populaTextFields(Mercadoria m){
-		tbId.setValue(m.getId().toString());
+		tbId.setText(m.getId().toString());
 		tbNome.setText(m.getNome());
 		tbDescricao.setText(m.getDescricao());
-		tbQuantidade.setValue(m.getQuantidade().toString());
+		tbQuantidade.setText(m.getQuantidade().toString());
 		tbPreco.setText(Mercadoria.convertPrecoToString(m.getPreco()));
 	}
 	
@@ -135,6 +135,8 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		} catch (NumberFormatException nex) {
 			throw new RuntimeException("Campo quantidade com conteúdo inválido!");
 		}
+		if (quantidade <= 0)
+			throw new RuntimeException("Quantidade inválida. Quantidade mínima é 1!");
 
 		Double preco = null;
 		try {
@@ -142,6 +144,8 @@ public class IncluirMercadoriaDialog extends DialogBox {
 		} catch (Exception nex) {
 			throw new RuntimeException("Campo preco com conteudo invalido!");
 		}
+		if (preco.intValue() <= 0)
+			throw new RuntimeException("Preço inválida. Preço mínimo é 1!");
 
 		Long id = null;
 		try {

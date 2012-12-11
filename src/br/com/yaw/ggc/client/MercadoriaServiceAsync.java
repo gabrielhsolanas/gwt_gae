@@ -1,6 +1,8 @@
 package br.com.yaw.ggc.client;
 
 
+import java.util.Map;
+
 import br.com.yaw.ggc.client.model.Mercadoria;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -20,4 +22,6 @@ public interface MercadoriaServiceAsync {
 	void remove(Mercadoria m, AsyncCallback<Boolean> callback);
 	
 	void getAll(AsyncCallback<Mercadoria[]> callback);
+	
+	void getApplicationProperties(AsyncCallback<Map<String, String>> callback);
 }

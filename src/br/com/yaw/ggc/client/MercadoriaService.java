@@ -1,6 +1,8 @@
 package br.com.yaw.ggc.client;
 
 
+import java.util.Map;
+
 import br.com.yaw.ggc.client.model.Mercadoria;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -38,5 +40,10 @@ public interface MercadoriaService extends RemoteService {
 	 */
 	Mercadoria[] getAll() throws RuntimeException;
 	
+	/**
+	 * @return Recupera informações da aplicação no arquivo <code>META-INF/MANIFEST.MF</code>.
+	 */
+	Map<String, String> getApplicationProperties();
+
 }
  

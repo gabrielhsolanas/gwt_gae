@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Ant
+Build-Jdk: 1.6.0_30
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: br.com.yaw.ggc
+Implementation-Build: 93644210396f7d87042ea20d14e0e4778b0e5e31
+Built-By: YaW Tecnologia
+Implementation-Title: Demo GWT c/ JDO no App Engine
+Implementation-Site: http://www.yaw.com.br

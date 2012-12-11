@@ -2,12 +2,14 @@ package br.com.yaw.ggc.client.controller;
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Map;
 
 import br.com.yaw.ggc.client.MercadoriaServiceAsync;
 import br.com.yaw.ggc.client.callback.DefaultCallback;
 import br.com.yaw.ggc.client.model.Mercadoria;
 import br.com.yaw.ggc.client.ui.IncluirMercadoriaDialog;
 import br.com.yaw.ggc.client.ui.MercadoriaTable;
+import br.com.yaw.ggc.client.ui.MessageDialog;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -67,18 +69,14 @@ public class MercadoriaController extends AbstractController {
 			}
 		});
 		
-		buttonPanel.addStyleName("buttonPanel");
-		
 		Button bNova = new Button("Nova");
 		registerHandler(bNova, new ClickHandler() {
-			
 			@Override
 			public void onClick(ClickEvent event) {
 				incluirDialog.center();
 				incluirDialog.show();
 			}
 		});
-		buttonPanel.add(bNova);
 		
 		Button bEditar = new Button("Editar");
 		registerHandler(bEditar, new ClickHandler() {
@@ -92,11 +90,9 @@ public class MercadoriaController extends AbstractController {
 				incluirDialog.show();
 			}
 		});
-		buttonPanel.add(bEditar);
 		
 		Button bExcluir = new Button("Excluir");
-		bExcluir.addClickHandler(new ClickHandler() {
-			
+		registerHandler(bExcluir, new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				final Mercadoria m = mercadoriasTable.getMercadoriaSelected();
@@ -105,22 +101,47 @@ public class MercadoriaController extends AbstractController {
 				service.remove(m, new DefaultCallback<Boolean>() {
 					@Override
 					public void onSuccess(Boolean result) {
-						mercadoriasTable.remove(m);
+						if (result) {
+							mercadoriasTable.remove(m);
+						}
 					}
 				});
 			}
 		});
-		buttonPanel.add(bExcluir);
 		
 		Button bAtualizar = new Button("Atualizar");
-		bAtualizar.addClickHandler(new ClickHandler() {
-			
+		registerHandler(bAtualizar, new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				fillTable();
 			}
 		});
+		
+		Button bSobre = new Button("Sobre");
+		registerHandler(bSobre, new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				service.getApplicationProperties(new DefaultCallback<Map<String,String>>() {
+					public void onSuccess(Map<String,String> result) {
+						StringBuilder sb = new StringBuilder();
+						for (String k: result.keySet()) {
+							sb.append("<strong>").append(k).append(":</strong> ")
+								.append(result.get(k)).append("<br/>");
+						}
+						MessageDialog msgDialog = new MessageDialog(sb.toString(),"Informações da Aplicação");
+						msgDialog.show();
+						msgDialog.center();
+					};
+				});
+			}
+		});
+		
+		buttonPanel.addStyleName("buttonPanel");
+		buttonPanel.add(bNova);
+		buttonPanel.add(bEditar);
+		buttonPanel.add(bExcluir);
 		buttonPanel.add(bAtualizar);
+		buttonPanel.add(bSobre);
 		
 		mainPanel.add(mercadoriasTable);
 		mainPanel.add(buttonPanel);
