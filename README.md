@@ -11,11 +11,13 @@ Detalhes da implementação
 -------
 Tecnologias utilizadas na implementação:
 * GWT: utilizamos o GWT para desenvolvimento da camada visual (front-end) e integração com os serviços Web (server side);
-* GAE: configurações definidas para a implantação da aplicação no GAE.
+* App Engine: configurações definidas para a implantação da aplicação no GAE;
+* JDO: define um conjunto de interfaces para persistência de objetos Java;
+* Datanucleus: provider JDO adaptado para o mecanismo de persistência do App Engine, o DataStore;
 
 Pré-requisitos
 -------
-* JDK - última versão do Kit de desenvolvimento Java;
+* JDK - versão 1.6 do Java, a versão suportada pelo App Engine;
 * Eclipse IDE - o projeto possui as configurações do Eclipse, por contar com mais opções na integração com ferramentas do Google;
 * Plugin do Google para Eclipse - plugin com suporte a implantação no GAE e para o desenvolvimento com GWT.
 * Versão do SDK GWT: 2.5.0.
