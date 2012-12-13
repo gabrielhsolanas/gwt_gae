@@ -1,2 +1,0 @@
-serviceClass: br.com.yaw.ggc.client.MercadoriaService
-path: 0DFB3B84DD7ADFD631C73FD70BA89C7F.gwt.rpc
